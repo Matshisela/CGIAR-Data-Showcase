@@ -74,7 +74,13 @@ temp_grp_data <- temp_df1 %>%
   group_by(Area, Year) %>%
   summarise(Average_Temp = mean(`Temperature Change`))
 
+<<<<<<< HEAD
 crop_grp_data <- na.omit(cdf1) %>%
+=======
+temp_grp_data
+
+crop_grp_data <- cdf1 %>%
+>>>>>>> 5b5af26f1070b647dbdf8da119374db6799583f1
   filter(Area %in% c("Africa", "Asia", "Americas", "Europe", "Oceania")) %>%
   group_by(Area, Year) %>%
   summarise(Crop_yield = sum(`Crop Yield`))
@@ -85,16 +91,30 @@ quart <- c("Dec-Jan-Feb", "Jun-Jul-Aug", "Mar-Apr-May", "Sep-Oct-Nov")
 
 #Grouping by quarters for continents
 temp_quart <- temp_df1 %>%
+<<<<<<< HEAD
   filter(Months %in% c("Dec-Jan-Feb", "Jun-Jul-Aug", "Mar-Apr-May", "Sep-Oct-Nov")) %>%
   filter(Area %in% c("Africa", "Asia", "Americas", "Europe", "Oceania")) %>%
   group_by(Area, Months, Year) %>%
   summarise(Mean = mean(`Temperature Change`))
 
 view(temp_quart)
+=======
+  filter(Area %in% c("Africa", "Asia", "Americas", "Europe", "Oceania")) %>%
+  filter(Months %in% quart) %>%
+  #filter(Months %in% c("Dec-Jan-Feb", "Jun-Jul-Aug", "Mar-Apr-May", "Sep-Oct-Nov")) %>%
+  group_by(Area, Months, Year) %>%
+  summarise(Mean = mean(`Temperature Change`))
+
+
+>>>>>>> 5b5af26f1070b647dbdf8da119374db6799583f1
 
 
 # merge two data frames by Area and Year
 total <- merge(temp_grp_data, crop_grp_data,by=c("Area","Year"))
+<<<<<<< HEAD
+=======
+View(total)
+>>>>>>> 5b5af26f1070b647dbdf8da119374db6799583f1
 
 
 # Data plotting -----------------------------------------------------------
@@ -128,6 +148,11 @@ ggplot(temp_quart, aes(x=Area, y=Mean)) +
 
 q #Europe has spaced quarterly changes. Some areas are warmer whilst some are not
 
+<<<<<<< HEAD
+=======
+ggsave(filename= "Continental Quartely temp changes.png", plot=q, device="png")
+
+>>>>>>> 5b5af26f1070b647dbdf8da119374db6799583f1
 # Correlation by group ----------------------------------------------------
 
 total %>%
